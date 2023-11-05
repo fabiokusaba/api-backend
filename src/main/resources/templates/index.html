@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teste de CORS</title>
+</head>
+<body>
+    <h2>Lista de Clientes</h2>
+    <ul></ul>
+    <script>
+        // Realiza uma requisição do tipo GET
+        fetch("http://localhost:8080/clientes")
+
+        // Converte o retorno para um JSON
+            .then(retorno => retorno.json())
+
+        // Realiza a exibição dos clientes
+            .then(retorno => {
+                console.log(retorno);
+                const ul = document.querySelector('ul');
+
+                retorno.forEach(item => {
+                    let li = document.createElement('li');
+                    li.textContent = `nome: ${item.nome} - idade: ${item.idade}`;
+                    ul.appendChild(li);
+                });
+
+                /*for(item in retorno) {
+                    let li = document.createElement('li');
+                    li.textContent = `nome: ${retorno[item].nome} - idade: ${retorno[item].idade}`;
+                    ul.appendChild(li);
+                }*/
+            });
+    </script>
+</body>
+</html>
